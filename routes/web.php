@@ -141,6 +141,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('livewire.index');
 });
+Route::view('category','pages.category');
+Route::view('audio','pages.audio');
+
+
+
 
 Route::get('about', About::class);
 Route::get('accordion', Accordion::class);
