@@ -45,7 +45,7 @@
                     <!-- CONTAINER CLOSED -->
              </div>
 
-            @include('layouts.components.modal')
+{{--            @include('layouts.components.modal')--}}
 
             @yield('modal')
 
