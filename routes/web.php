@@ -1,4 +1,5 @@
 <?php
+
 use App\Http\Livewire\About;
 use App\Http\Livewire\Accordion;
 use App\Http\Livewire\Alerts;
@@ -125,6 +126,7 @@ use App\Http\Livewire\Width;
 use App\Http\Livewire\Wishlist;
 use App\Http\Livewire\Wysiwyag;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -138,9 +140,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('livewire.index');
-});
+//Route::prefix('admin')->name('admin.')->group(function () {
+//    Route::get('login', [AuthController::class,'showLogin'])->name('login.show');
+//    Route::post('login', [AuthController::class,'login'])->name('login.submit');
+//    Route::post('logout', [AuthController::class,'logout'])->name('logout');
+//});
+
+//Route::prefix('admin')->middleware('auth')->name('admin.')->group(function () {
+//    Route::get('dashboard', function () {
+//        return view('livewire.index');
+//    })->name('dashboard');
+//});
+
+
 Route::view('category','pages.category');
 Route::view('audio','pages.audio');
 
@@ -272,3 +284,4 @@ Route::get('users-list', UsersList::class);
 Route::get('width', Width::class);
 Route::get('wishlist', Wishlist::class);
 Route::get('wysiwyag', Wysiwyag::class);
+
