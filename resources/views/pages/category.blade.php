@@ -1,74 +1,7 @@
 @extends('layouts.app')
 
 @section('styles')
-<style>
-    .avatar-upload {
-        position: relative;
-        max-width: 205px;
-        margin: 0 auto;
-    }
 
-    .avatar-upload .avatar-edit {
-        position: absolute;
-        right: 12px;
-        z-index: 1;
-        top: 10px;
-    }
-
-    .avatar-upload .avatar-edit input {
-        display: none;
-    }
-
-    .avatar-upload .avatar-edit input + label {
-        display: inline-block;
-        width: 34px;
-        height: 34px;
-        margin-bottom: 0;
-        border-radius: 100%;
-        background: #ffffff;
-        border: 1px solid transparent;
-        box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
-        cursor: pointer;
-        font-weight: normal;
-        transition: all 0.2s ease-in-out;
-    }
-
-    .avatar-upload .avatar-edit input + label:hover {
-        background: #f1f1f1;
-        border-color: #d6d6d6;
-    }
-
-    .avatar-upload .avatar-edit input + label:after {
-        content: "\f040";
-        font-family: "FontAwesome";
-        color: #757575;
-        position: absolute;
-        top: 10px;
-        left: 0;
-        right: 0;
-        text-align: center;
-        margin: auto;
-    }
-
-    .avatar-upload .avatar-preview {
-        width: 192px;
-        height: 192px;
-        position: relative;
-        border-radius: 100%;
-        background: #0df850;
-        border: 6px solid #f8f8f8;
-        box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
-    }
-
-    .avatar-upload .avatar-preview > div {
-        width: 100%;
-        height: 100%;
-        border-radius: 100%;
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center;
-    }
-    </style>
 @endsection
 
 @section('content')
@@ -97,7 +30,7 @@
                     </div>
                     <div class="card-body">
                         {{--                                                @can("write status")--}}
-                        <button class="btn btn-success-gradient mb-4 data-table-btn" id="add-category">
+                        <button class="btn btn-success-gradient-custom mb-4 data-table-btn" id="add-category">
                             Add Category</button>
                         {{--                                                @endcan--}}
                         <div class="table-responsive">
@@ -109,6 +42,7 @@
             </div>
         </div>
         <!-- End Row -->
+
     @endsection
 
 @endsection
@@ -142,7 +76,7 @@
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-gray" data-bs-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-success" id="add-new-category">Add</button>
+                    <button type="button" class="btn btn-modal-success-custom" id="add-new-category">Add</button>
                 </div>
 
             </div>
@@ -195,6 +129,7 @@
                 {'extend': 'pdf'},
                 {'extend': 'pageLength'},
             ],
+
             ajax: {
                 url: "{{route('categories.datatables')}}"
             },
@@ -209,14 +144,18 @@
                         if (data == 1)
                             return '<span class="status-indicator projects completed">Active</span>';
                         else
-                            return '<span class="status-indicator projects closed">Block</span>';
+                            return '<span class="status-indicator projects closed">DisActive</span>';
                     }
                 },
                 {
                     title: 'Image',
                     data: 'image',
                     render: function (data) {
-                        return '<span class="status-indicator projects completed">Active</span>';
+                        if (data) {
+                            return `<img src="${data}" alt="Image" class="img-fluid" style="max-height: 50px; border-radius: 5px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);"/>`;
+                        } else {
+                            return '';
+                        }
                     }
                 },
                 {title: 'Created At', data: 'created_at'},
@@ -227,11 +166,26 @@
                     orderable: false,
                     render: function (data, type, row) {
                         return `
-                        <button class="btn show-btn" data-id="${data}"><i class="fal fa-eye fa-lg text-dark" data-toggle="tooltip" title="Show"></i></button>
-                        <button class="btn show-info-btn" data-id="${data}"><i class="icon icon-action-undo fa-lg text-dark" data-toggle="tooltip" title="Show Details"></i></button>
-                        <button class="btn edit-btn" data-id="${data}"><i class="fal fa-edit fa-lg text-success" data-toggle="tooltip" title="Edit"></i></button>
-                       <button class="btn delete-btn" data-id="${data}"><i class="fal fa-lg text-danger fa-trash-alt" data-toggle="tooltip" title="Delete"></i></button>
-                        `;
+        <button class="btn show-btn" data-id="${data}" title="Show">
+            <i class="fa fa-eye fa-lg text-dark" aria-hidden="true"></i>
+            <span class="sr-only">Show</span>
+        </button>
+
+        <button class="btn show-info-btn" data-id="${data}" title="Show Details">
+            <i class="icon icon-action-undo fa-lg text-dark" aria-hidden="true"></i>
+            <span class="sr-only">Show Details</span>
+        </button>
+
+        <button class="btn edit-btn" data-id="${data}" title="Edit">
+            <i class="fa fa-edit fa-lg text-success" aria-hidden="true"></i>
+            <span class="sr-only">Edit</span>
+        </button>
+
+        <button class="btn delete-btn" data-id="${data}" title="Delete">
+            <i class="fa fa-lg fa-trash text-danger" aria-hidden="true"></i>
+            <span class="sr-only">Delete</span>
+        </button>
+    `;
                     }
                 }
 

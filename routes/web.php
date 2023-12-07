@@ -29,9 +29,10 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::get('categories', [\App\Http\Controllers\admin\CategoryController::class,'index']);
+Route::get('categories', [\App\Http\Controllers\admin\CategoryController::class,'index'])->name('categories');
 Route::get('datatables/categories',  [\App\Http\Controllers\admin\CategoryController::class,'datatables'])->name('categories.datatables');
-
+Route::view('user','pages.user');
+Route::view('role','pages.role');
 
 //Route::resource('tutorial-list', TutorialsController::class)
 //    ->only(['store', 'update', 'destroy'])

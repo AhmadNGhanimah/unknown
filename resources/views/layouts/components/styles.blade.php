@@ -10,6 +10,7 @@
 
         <!-- STYLE CSS -->
         <link href="{{asset('assets/css/style.css')}}" rel="stylesheet" />
+        <link href="{{asset('assets/css/custom.css')}}" rel="stylesheet" />
         <link href="{{asset('assets/css/skin-modes.css')}}" rel="stylesheet" />
 
         @yield('styles')
