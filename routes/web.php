@@ -29,8 +29,14 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::get('categories', [\App\Http\Controllers\admin\CategoryController::class,'index'])->name('categories');
-Route::get('datatables/categories',  [\App\Http\Controllers\admin\CategoryController::class,'datatables'])->name('categories.datatables');
+Route::get('categories', [\App\Http\Controllers\admin\CategoryController::class,'index'])->name('category.index');
+Route::get('categories/create', [\App\Http\Controllers\admin\CategoryController::class,'create'])->name('category.create');
+Route::get('categories/{id}', [\App\Http\Controllers\admin\CategoryController::class,'show'])->name('category.show');
+Route::post('categories', [\App\Http\Controllers\admin\CategoryController::class,'store'])->name('category.store');
+Route::put('categories/{category}', [\App\Http\Controllers\admin\CategoryController::class,'update'])->name('category.update');
+
+Route::delete('categories/{Category}', [\App\Http\Controllers\admin\CategoryController::class,'destroy'])->name('category.destroy');
+Route::get('datatables/categories',  [\App\Http\Controllers\admin\CategoryController::class,'datatables'])->name('category.datatables');
 Route::view('user','pages.user');
 Route::view('role','pages.role');
 

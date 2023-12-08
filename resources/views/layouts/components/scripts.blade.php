@@ -41,4 +41,44 @@
         $(document).on('change', '#imageUpload', function () {
         readURL(this);
         })
+
+        function ajaxFormModalSubmit(formElement) {
+            var url = formElement.attr('action');
+            var method = formElement.find('input[name="_method"]').val() || 'POST';
+            var formData = new FormData(formElement[0]);
+            var submitButton = formElement.find(':submit');
+            var originalButtonText = submitButton.html();
+            submitButton.html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Loading...').prop('disabled', true);
+
+            $.ajax({
+                type: 'POST',
+                url: url,
+                data: formData,
+                cache: false,
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                contentType: false,
+                processData: false,
+                success: function(data) {
+                    if(data.status === 'success'){
+                        if (typeof table !== 'undefined') {
+                            table.ajax.reload();
+                        }
+                        $.growl.notice({ title: "Success", message: data.message });
+                        formElement.closest('.modal').modal('hide');
+                    }
+                    submitButton.html(originalButtonText).prop('disabled', false);
+                },
+                error: function(xhr, status, error) {
+                    var errorMessage = xhr.responseJSON.message;
+                    $.growl.error({ title: "Error", message: errorMessage });
+                    submitButton.html(originalButtonText).prop('disabled', false);
+                }
+            });
+        }
+          $(document).on('submit', '.ajax-modal-form', function(e) {
+            e.preventDefault();
+            ajaxFormModalSubmit($(this));
+        });
         </script>

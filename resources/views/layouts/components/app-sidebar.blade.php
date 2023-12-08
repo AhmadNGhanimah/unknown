@@ -36,7 +36,7 @@
                                 </a>
                                 <ul class="slide-menu">
                                     <li class="side-menu-label1"><a href="javascript:void(0)">Forms</a></li>
-                                    <li><a href="{{route('categories')}}" class="slide-item">Category</a></li>
+                                    <li><a href="{{route('category.index')}}" class="slide-item">Category</a></li>
 {{--                                    <li><a href="{{url('form-layouts')}}" class="slide-item">Form Layouts</a></li>--}}
 {{--                                    <li><a href="{{url('form-validation')}}" class="slide-item">Form Validation</a></li>--}}
 {{--                                    <li><a href="{{url('form-advanced')}}" class="slide-item">Form Advanced</a></li>--}}
