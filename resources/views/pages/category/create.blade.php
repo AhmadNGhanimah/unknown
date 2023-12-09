@@ -6,47 +6,53 @@
     @endif
 
     <div class="form-group">
-        <label for="status-name">Name EN</label>
-        <input type="text" value="{{isset($item) ? $item->name : ''}}" class="form-control" id="status-name" name="name" required {{isset($showOnly) && $showOnly == 1 ? 'readonly':''}}>
+        <label for="nameEn">Name EN</label>
+        <input type="text" value="{{isset($item) ? $item->name : ''}}" class="form-control" id="nameEn" name="name" required {{isset($showOnly) && $showOnly == 1 ? 'readonly':''}}>
     </div>
 
     <div class="form-group">
-        <label for="status-name">Name AR</label>
-        <input type="text" value="{{isset($item) ? $item->name : ''}}" class="form-control" id="status-name" name="name_ar" required>
+        <label for="nameAr">Name AR</label>
+        <input type="text" value="{{isset($item) ? $item->name : ''}}" class="form-control custom-rtl" id="nameAr" name="name_ar" required {{isset($showOnly) && $showOnly == 1 ? 'readonly':''}}>
     </div>
 
     <div class="form-group">
-        <label for="description">Description EN</label>
-        <textarea class="form-control" id="description" name="description" rows="3" required>{{isset($item) ? $item->description : ''}}</textarea>
+        <label for="descriptionEn">Description EN</label>
+        <textarea class="form-control" id="descriptionEn" name="description" rows="3" required {{isset($showOnly) && $showOnly == 1 ? 'readonly':''}} >{{isset($item) ? $item->description : ''}}</textarea>
     </div>
 
     <div class="form-group">
-        <label for="description">Description AR</label>
-        <textarea class="form-control" id="description" name="description_ar" rows="3" required>{{isset($item) ? $item->description_ar : ''}}</textarea>
+        <label for="descriptionAr">Description AR</label>
+
+        <textarea class="form-control custom-rtl" id="descriptionAr" name="description_ar" rows="3" required {{isset($showOnly) && $showOnly == 1 ? 'readonly':''}}>{{isset($item) ? $item->description_ar : ''}}</textarea>
     </div>
 
     <div class="form-group">
         <label for="status" class="form-label">State</label>
-        <select class="form-select" id="status" name="status" required="required">
+        <select class="form-select" id="status" name="status" required="required" {{ isset($showOnly) && $showOnly == 1 ? 'disabled' : '' }}>
             <option selected="" disabled="" value="">Choose</option>
-            <option {{isset($item) && $item->status == 1 ? 'selected' : ''}} value="1">Active</option>
-            <option {{isset($item) && $item->status == 0 ? 'selected' : ''}} value="0">InActive</option>
+            <option {{ isset($item) && $item->status == 1 ? 'selected' : '' }} value="1">Active</option>
+            <option {{ isset($item) && $item->status == 0 ? 'selected' : '' }} value="0">Inactive</option>
         </select>
     </div>
+
 
 
     <div class="form-group">
         <div class="avatar-upload">
             <div class="avatar-edit">
-                <input type='file' name="pic" id="imageUpload" accept=".pdf,.jpg, .png, image/jpeg, image/png" required />
+                <input type='file' name="pic" id="imageUpload" accept=".pdf, .jpg, .png, image/jpeg, image/png" {{ isset($showOnly) && $showOnly == 1 ? 'disabled' : '' }} required />
                 <label for="imageUpload"></label>
             </div>
             <div class="avatar-preview">
-                <div id="imagePreview" style="background-image: {{ isset($item) ? "url($item->image)": "url(https://s3.me-south-1.amazonaws.com/sightsense/default.png)" }} ;">
+{{--                <div id="imagePreview" style="background-image: {{ isset($item) ? "url($item->image)" : "url(https://s3.me-south-1.amazonaws.com/sightsense/default.png)" }} ;">--}}
+{{--                </div>--}}
+                <div id="imagePreview" style="background-image: url({{ isset($item) ? asset($item->image) : asset('assets/images/default.png') }});">
                 </div>
+
             </div>
         </div>
     </div>
+
 
 
     <div class="modal-footer">

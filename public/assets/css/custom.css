@@ -68,16 +68,11 @@
 
 /*Avatar Image End*/
 
-.btn-success-gradient-custom , .btn-success-gradient-custom:hover {
-    background: #8fbd56;
-    border: 1px solid #8fbd56;
-    color: #fff;
-    transition: background 0.3s, border-color 0.9s;
+.status-indicator.projects.closed:before{
+    background: red;
 }
 
-.btn-modal-success-custom , .btn-modal-success-custom:hover{
-    background: #8fbd56;
-    border: 1px solid #8fbd56;
-    color: #fff;
-    transition: background 0.3s, border-color 0.9s;
+.custom-rtl{
+    direction: rtl;
 }
+

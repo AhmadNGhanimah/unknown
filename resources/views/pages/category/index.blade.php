@@ -30,7 +30,7 @@
                     </div>
                     <div class="card-body">
                         {{--                                                @can("write status")--}}
-                        <button class="btn btn-success-gradient-custom mb-4 data-table-btn" id="add-category">
+                        <button class="btn btn-success-gradient mb-4 data-table-btn" id="add-category">
                             Add Category
                         </button>
                         {{--                                                @endcan--}}
@@ -143,7 +143,7 @@
                         if (data == 1)
                             return '<span class="status-indicator projects completed">Active</span>';
                         else
-                            return '<span class="status-indicator projects closed">DisActive</span>';
+                            return '<span class="status-indicator projects closed">InActive</span>';
                     }
                 },
                 {
