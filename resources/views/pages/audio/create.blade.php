@@ -1,4 +1,4 @@
-<form class="ajax-modal-form" action="{{ isset($item) ? route('category.update', $item->id) : route('category.store') }}" id="category-form" enctype="multipart/form-data" method="post">
+<form class="ajax-modal-form" action="{{ isset($item) ? route('audio.update', $item->id) : route('audio.store') }}" id="audio-form" enctype="multipart/form-data" method="post">
     @csrf
     @if(isset($item))
         @method('PUT')
@@ -6,13 +6,23 @@
     @endif
 
     <div class="form-group">
-        <label for="nameEn">Name EN</label>
-        <input type="text" value="{{isset($item) ? $item->name : ''}}" class="form-control" id="nameEn" name="name" required {{isset($showOnly) && $showOnly == 1 ? 'readonly':''}}>
+        <label for="status" class="form-label">Categories</label>
+        <select class="form-select" id="status" name="category_id" required="required" {{ isset($showOnly) && $showOnly == 1 ? 'disabled' : '' }}>
+            <option selected="" disabled="" value="">Choose</option>
+            @foreach($categories as $category)
+                <option {{ isset($item) && $item->category_id == $category->id ? 'selected' : '' }} value="{{$category->id}}">{{$category->name}} - {{$category->name_ar}}</option>
+            @endforeach
+        </select>
     </div>
 
     <div class="form-group">
-        <label for="nameAr">Name AR</label>
-        <input type="text" value="{{isset($item) ? $item->name_ar : ''}}" class="form-control custom-rtl" id="nameAr" name="name_ar" required {{isset($showOnly) && $showOnly == 1 ? 'readonly':''}}>
+        <label for="nameEn">Title EN</label>
+        <input type="text" value="{{isset($item) ? $item->title : ''}}" class="form-control" id="nameEn" name="title" required {{isset($showOnly) && $showOnly == 1 ? 'readonly':''}}>
+    </div>
+
+    <div class="form-group">
+        <label for="nameAr">Title AR</label>
+        <input type="text" value="{{isset($item) ? $item->title_ar : ''}}" class="form-control custom-rtl" id="nameAr" name="title_ar" required {{isset($showOnly) && $showOnly == 1 ? 'readonly':''}}>
     </div>
 
     <div class="form-group">
@@ -35,18 +45,25 @@
         </select>
     </div>
 
-
+    @if(isset($item) && !empty($item->path))
+        <div class="form-group">
+            <audio controls>
+                <source src="{{isset($item) ? $item->path : ''}}" type="audio/ogg">
+                <source src="{{isset($item) ? $item->path : ''}}" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+    @endif
 
     <div class="form-group">
         <div class="avatar-upload">
             <div class="avatar-edit">
-                <input type='file' name="pic" id="imageUpload" accept="image/*" {{ isset($showOnly) && $showOnly == 1 ? 'disabled' : '' }} {{ !isset($item) ? 'required':'' }} />
+                <input type='file' name="audio" id="imageUpload" accept="audio/*" {{ isset($showOnly) && $showOnly == 1 ? 'disabled' : '' }} {{ !isset($item) ? 'required':'' }} />
                 <label for="imageUpload"></label>
             </div>
             <div class="avatar-preview">
                 <div id="imagePreview" style="background-image: url({{ isset($item) ? $item->image : asset('assets/images/default.png') }});">
                 </div>
-
             </div>
         </div>
     </div>

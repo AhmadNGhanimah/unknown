@@ -3,15 +3,11 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Attachment;
 use App\Models\Category;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Http\UploadedFile;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
-use Intervention\Image\Facades\Image;
 use Yajra\DataTables\DataTables;
 
 class CategoryController extends Controller
@@ -141,11 +137,11 @@ class CategoryController extends Controller
     }
 
 
-    public function destroy(Request $request, Category $Category)
+    public function destroy(Request $request, Category $category)
     {
-        $categoryName= $Category->name;
+        $categoryName= $category->name;
         try {
-            $Category->delete();
+            $category->delete();
             return response()->json([
                 'status' => 'success',
                 'message' => 'The '.$categoryName.' has been successfully deleted'

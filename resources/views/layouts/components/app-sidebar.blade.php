@@ -51,7 +51,7 @@
                                     <span class="side-menu__label">Audios</span><i class="angle fa fa-angle-right"></i></a>
                                 <ul class="slide-menu">
                                     <li class="side-menu-label1"><a href="javascript:void(0)">Tables</a></li>
-                                    <li><a href="{{url('audio')}}" class="slide-item">Audio</a></li>
+                                    <li><a href="{{route('audio.index')}}" class="slide-item">Audio</a></li>
 {{--                                    <li><a href="{{url('datatable')}}" class="slide-item">Data Tables</a></li>--}}
 {{--                                    <li><a href="{{url('table-editable')}}" class="slide-item">Editable Tables</a></li>--}}
                                 </ul>

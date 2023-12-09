@@ -29,14 +29,29 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::get('categories', [\App\Http\Controllers\admin\CategoryController::class,'index'])->name('category.index');
-Route::get('categories/create', [\App\Http\Controllers\admin\CategoryController::class,'create'])->name('category.create');
-Route::get('categories/{id}', [\App\Http\Controllers\admin\CategoryController::class,'show'])->name('category.show');
-Route::post('categories', [\App\Http\Controllers\admin\CategoryController::class,'store'])->name('category.store');
-Route::put('categories/{category}', [\App\Http\Controllers\admin\CategoryController::class,'update'])->name('category.update');
-
-Route::delete('categories/{Category}', [\App\Http\Controllers\admin\CategoryController::class,'destroy'])->name('category.destroy');
+Route::prefix('categories')->name('category.')->group(function () {
+    Route::get('', [\App\Http\Controllers\admin\CategoryController::class,'index'])->name('index');
+    Route::post('', [\App\Http\Controllers\admin\CategoryController::class,'store'])->name('store');
+    Route::get('create', [\App\Http\Controllers\admin\CategoryController::class,'create'])->name('create');
+    Route::get('{id}', [\App\Http\Controllers\admin\CategoryController::class,'show'])->name('show');
+    Route::put('{category}', [\App\Http\Controllers\admin\CategoryController::class,'update'])->name('update');
+    Route::delete('{category}', [\App\Http\Controllers\admin\CategoryController::class,'destroy'])->name('destroy');
+});
 Route::get('datatables/categories',  [\App\Http\Controllers\admin\CategoryController::class,'datatables'])->name('category.datatables');
+
+
+Route::prefix('audios')->name('audio.')->group(function () {
+    Route::get('', [\App\Http\Controllers\admin\AudioController::class,'index'])->name('index');
+    Route::post('', [\App\Http\Controllers\admin\AudioController::class,'store'])->name('store');
+    Route::get('create', [\App\Http\Controllers\admin\AudioController::class,'create'])->name('create');
+    Route::get('{id}', [\App\Http\Controllers\admin\AudioController::class,'show'])->name('show');
+    Route::put('{audio}', [\App\Http\Controllers\admin\AudioController::class,'update'])->name('update');
+    Route::delete('{audio}', [\App\Http\Controllers\admin\AudioController::class,'destroy'])->name('destroy');
+});
+Route::get('datatables/audios',  [\App\Http\Controllers\admin\AudioController::class,'datatables'])->name('audio.datatables');
+
+
+
 Route::view('user','pages.user');
 Route::view('role','pages.role');
 
