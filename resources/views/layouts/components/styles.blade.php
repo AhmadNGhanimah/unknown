@@ -1,9 +1,9 @@
 
 		<!-- TITLE -->
-		<title>Noa - Laravel Bootstrap 5 Admin & Dashboard Template</title>
+		<title>Project Unknown</title>
 
         <!-- FAVICON -->
-        <link rel="shortcut icon" type="image/x-icon" href="{{asset('assets/images/brand/favicon.ico')}}" />
+        <link rel="shortcut icon" type="image/x-icon" href="{{asset('assets/images/brand/fav-icon.png')}}" />
 
         <!-- BOOTSTRAP CSS -->
         <link id="style" href="{{asset('assets/plugins/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet" />

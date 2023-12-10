@@ -31,7 +31,7 @@
         <select class="form-select" id="status" name="status" required="required" {{ isset($showOnly) && $showOnly == 1 ? 'disabled' : '' }}>
             <option selected="" disabled="" value="">Choose</option>
             <option {{ isset($item) && $item->status == 1 ? 'selected' : '' }} value="1">Active</option>
-            <option {{ isset($item) && $item->status == 0 ? 'selected' : '' }} value="0">Inactive</option>
+            <option {{ isset($item) && $item->status == 0 ? 'selected' : '' }} value="0">InActive</option>
         </select>
     </div>
 

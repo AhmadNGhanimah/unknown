@@ -50,20 +50,24 @@
             <audio controls>
                 <source src="{{isset($item) ? $item->path : ''}}" type="audio/ogg">
                 <source src="{{isset($item) ? $item->path : ''}}" type="audio/mpeg">
-                Your browser does not support the audio element.
             </audio>
         </div>
     @endif
 
     <div class="form-group">
-        <div class="avatar-upload">
-            <div class="avatar-edit">
-                <input type='file' name="audio" id="imageUpload" accept="audio/*" {{ isset($showOnly) && $showOnly == 1 ? 'disabled' : '' }} {{ !isset($item) ? 'required':'' }} />
-                <label for="imageUpload"></label>
+        <div class="audio-upload">
+            @if(empty($showOnly))
+            <div class="audio-edit">
+                <input type='file' name="audio" id="audioUpload" accept="audio/*"  />
+                <label for="audioUpload"></label>
             </div>
-            <div class="avatar-preview">
-                <div id="imagePreview" style="background-image: url({{ isset($item) ? $item->image : asset('assets/images/default.png') }});">
-                </div>
+            @endif
+            <div class="audio-preview">
+                <audio controls id="audioPreview" style="width: 100%; display: none;">
+                    <source src="{{ isset($item) ? $item->audio : '' }}" type="audio/ogg">
+                    <source src="{{ isset($item) ? $item->audio : '' }}" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
             </div>
         </div>
     </div>
@@ -75,3 +79,20 @@
         <button type="button" class="btn btn-gray" data-bs-dismiss="modal">Close</button>
     </div>
 </form>
+<script>
+    document.getElementById('audioUpload').addEventListener('change', function (event) {
+        var fileInput = event.target;
+        var audioPreview = document.getElementById('audioPreview');
+
+        if (fileInput.files && fileInput.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                audioPreview.src = e.target.result;
+                audioPreview.style.display = 'block';
+            };
+
+            reader.readAsDataURL(fileInput.files[0]);
+        }
+    });
+</script>
