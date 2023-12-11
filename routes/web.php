@@ -50,6 +50,15 @@ Route::prefix('audios')->name('audio.')->group(function () {
 });
 Route::get('datatables/audios',  [\App\Http\Controllers\admin\AudioController::class,'datatables'])->name('audio.datatables');
 
+Route::prefix('users')->name('users.')->group(function () {
+    Route::get('', [\App\Http\Controllers\admin\UsersController::class,'index'])->name('index');
+    Route::post('', [\App\Http\Controllers\admin\UsersController::class,'store'])->name('store');
+    Route::get('create', [\App\Http\Controllers\admin\UsersController::class,'create'])->name('create');
+    Route::get('{id}', [\App\Http\Controllers\admin\UsersController::class,'show'])->name('show');
+    Route::put('{user}', [\App\Http\Controllers\admin\UsersController::class,'update'])->name('update');
+    Route::delete('{user}', [\App\Http\Controllers\admin\UsersController::class,'destroy'])->name('destroy');
+});
+Route::get('datatables/users',  [\App\Http\Controllers\admin\UsersController::class,'datatables'])->name('users.datatables');
 
 
 Route::view('user','pages.user');

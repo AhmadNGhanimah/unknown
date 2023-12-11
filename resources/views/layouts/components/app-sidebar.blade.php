@@ -62,7 +62,7 @@
                                     <span class="side-menu__label">User Management </span><i class="angle fa fa-angle-right"></i></a>
                                 <ul class="slide-menu">
                                     <li class="side-menu-label1"><a href="javascript:void(0)">Tables</a></li>
-                                    <li><a href="{{url('user')}}" class="slide-item">User</a></li>
+                                    <li><a href="{{route('users.index')}}" class="slide-item">User</a></li>
                                     <li><a href="{{url('role')}}" class="slide-item">Role</a></li>
 
                                     {{--                                    <li><a href="{{url('datatable')}}" class="slide-item">Data Tables</a></li>--}}
