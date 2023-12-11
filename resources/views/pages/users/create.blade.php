@@ -44,6 +44,21 @@
         <input type="email" value="{{isset($item) ? $item->title_ar : ''}}" class="form-control" id="email"
                name="email" required {{isset($showOnly) && $showOnly == 1 ? 'readonly':''}}>
     </div>
+    <div class="form-group">
+        <label for="password">Password</label>
+
+        <input type="password" value="{{isset($item) ? $item->title_ar : ''}}" class="form-control" id="password"
+               name="password" required {{isset($showOnly) && $showOnly == 1 ? 'readonly':''}}>
+    </div>
+    <div class="d-sm-flex align-items-center">
+        <div class="">
+            <p class="text-muted m-0">Full Access <span class="tag">Is Admin</span></p>
+        </div>
+        <div class="material-switch togglelg">
+            <input id="largeSwitchSuccess" name="largeSwitch" type="checkbox" checked="">
+            <label for="largeSwitchSuccess" class="label-success"></label>
+        </div>
+    </div>
 
 
     <div class="form-group">
