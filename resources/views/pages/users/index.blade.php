@@ -127,20 +127,30 @@
                 ],
 
                 ajax: {
-                    url: "{{route('users.datatables')}}"
+                    url: "{{route('user.datatables')}}"
                 },
                 columns: [
                     {title: 'ID', data: 'id'},
                     {title: 'Name', data: 'name'},
                     {title: 'email', data: 'email'},
                     {
-                        title: 'Status',
-                        data: 'status',
+                        title: 'Admin',
+                        data: 'is_admin',
                         render: function (data) {
                             if (data == 1)
-                                return '<span class="status-indicator projects completed">Active</span>';
+                                return '<span class="status-indicator projects completed"></span>';
                             else
-                                return '<span class="status-indicator projects closed">InActive</span>';
+                                return '<span class="status-indicator projects closed"></span>';
+                        }
+                    },
+                    {
+                        title: 'Role',
+                        data: 'roles',
+                        render: function (data, type, row) {
+                            if (data && Array.isArray(data) && data.length > 0) {
+                                return data[0].name; // Just take the name of the first role
+                            }
+                            return '';
                         }
                     },
                     {title: 'Created At', data: 'created_at'},
@@ -181,7 +191,7 @@
         $('#user-datatable').on('click', '.edit-btn', function () {
             let id = $(this).data('id');
 
-            var baseUrl = "{{ route('audio.show', '') }}";
+            var baseUrl = "{{ route('user.show', '') }}";
             $.ajax({
                 url: baseUrl + "/" + id,
                 type: 'GET',
@@ -204,7 +214,7 @@
         });
 
         $(document).on('click', '#confirmDelete', function () {
-            var baseUrl = "{{ route('audio.destroy', '') }}";
+            var baseUrl = "{{ route('user.destroy', '') }}";
             let id = $(this).attr('delete-id');
             $.ajax({
                 url: baseUrl + "/" + id,
@@ -230,7 +240,7 @@
         $('#add-user').on('click', function (e) {
             e.preventDefault();
             $.ajax({
-                url: "{{route('users.create')}}",
+                url: "{{route('user.create')}}",
                 success: function (data) {
                     $('#modal .modal-body').html(data);
                     $('#modal').modal('show');
@@ -242,7 +252,7 @@
         $('#user-datatable').on('click', '.show-btn', function () {
             let id = $(this).data('id');
 
-            var baseUrl = "{{ route('audio.show', '') }}";
+            var baseUrl = "{{ route('user.show', '') }}";
             $.ajax({
                 url: baseUrl + "/" + id,
                 type: 'GET',

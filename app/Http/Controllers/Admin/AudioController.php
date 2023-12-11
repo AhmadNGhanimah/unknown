@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Audio;
@@ -68,8 +68,8 @@ class AudioController extends Controller
 
 
         if ($request->hasFile('audio')) {
-            $audio = $request->file('audio');
-            $audioName = time() . '.' . $audio->extension();
+            $audioFile = $request->file('audio');
+            $audioName = time() . '.' . $audioFile->extension();
             $request->audio->storeAs('public/audios', $audioName);
             $Audio->path = $audioName;
         }
@@ -123,8 +123,8 @@ class AudioController extends Controller
 
 
             if ($request->hasFile('audio')) {
-                $audio = $request->file('audio');
-                $audioName = time() . '.' . $audio->extension();
+                $audioFile = $request->file('audio');
+                $audioName = time() . '.' . $audioFile->extension();
                 $request->audio->storeAs('public/audios', $audioName);
                 $audio->path = $audioName;
             }

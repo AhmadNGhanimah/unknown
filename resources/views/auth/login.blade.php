@@ -24,7 +24,7 @@
                 <div class="container-login100">
                     <div class="wrap-login100 p-0">
                         <div class="card-body">
-                            <form class="login100-form" action="{{route('login')}}" method="POST">
+                            <form class="login100-form" action="{{route('login.post')}}" method="POST">
                                 @csrf
                                 <span class="login100-form-title">
 										Login

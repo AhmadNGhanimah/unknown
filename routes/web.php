@@ -1,7 +1,12 @@
 <?php
 
 
-use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Admin\AudioController;
+use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\UsersController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,60 +20,56 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//Route::prefix('admin')->name('admin.')->group(function () {
-//    Route::get('login', [AuthController::class,'showLogin'])->name('login.show');
-//    Route::post('login', [AuthController::class,'login'])->name('login.submit');
-//    Route::post('logout', [AuthController::class,'logout'])->name('logout');
-//});
 
-//Route::prefix('admin')->middleware('auth')->name('admin.')->group(function () {
-//    Route::get('dashboard', function () {
-//        return view('livewire.index');
-//    })->name('dashboard');
-//});
+Route::get('/', [AuthController::class, 'showLogin'])->name('login');
+Route::post('/login', [AuthController::class, 'login'])->name('login.post');
+Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
 
+Route::group(['prefix' => '', 'middleware' => 'auth'], function () {
+    Route::get('/dashboard', [DashboardController::class, 'showDashboard'])->name('show.dashboard');
 
-Route::prefix('categories')->name('category.')->group(function () {
-    Route::get('', [\App\Http\Controllers\admin\CategoryController::class,'index'])->name('index');
-    Route::post('', [\App\Http\Controllers\admin\CategoryController::class,'store'])->name('store');
-    Route::get('create', [\App\Http\Controllers\admin\CategoryController::class,'create'])->name('create');
-    Route::get('{id}', [\App\Http\Controllers\admin\CategoryController::class,'show'])->name('show');
-    Route::put('{category}', [\App\Http\Controllers\admin\CategoryController::class,'update'])->name('update');
-    Route::delete('{category}', [\App\Http\Controllers\admin\CategoryController::class,'destroy'])->name('destroy');
+    Route::prefix('categories')->name('category.')->group(function () {
+        Route::get('', [CategoryController::class, 'index'])->name('index');
+        Route::post('', [CategoryController::class, 'store'])->name('store');
+        Route::get('create', [CategoryController::class, 'create'])->name('create');
+        Route::get('{id}', [CategoryController::class, 'show'])->name('show');
+        Route::put('{category}', [CategoryController::class, 'update'])->name('update');
+        Route::delete('{category}', [CategoryController::class, 'destroy'])->name('destroy');
+    });
+    Route::get('datatables/categories', [CategoryController::class, 'datatables'])->name('category.datatables');
+
+
+    Route::prefix('audios')->name('audio.')->group(function () {
+        Route::get('', [AudioController::class, 'index'])->name('index');
+        Route::post('', [AudioController::class, 'store'])->name('store');
+        Route::get('create', [AudioController::class, 'create'])->name('create');
+        Route::get('{id}', [AudioController::class, 'show'])->name('show');
+        Route::put('{audio}', [AudioController::class, 'update'])->name('update');
+        Route::delete('{audio}', [AudioController::class, 'destroy'])->name('destroy');
+    });
+    Route::get('datatables/audios', [AudioController::class, 'datatables'])->name('audio.datatables');
+
+    Route::prefix('users')->name('user.')->group(function () {
+        Route::get('', [UsersController::class, 'index'])->name('index');
+        Route::post('', [UsersController::class, 'store'])->name('store');
+        Route::get('create', [UsersController::class, 'create'])->name('create');
+        Route::get('{id}', [UsersController::class, 'show'])->name('show');
+        Route::put('{user}', [UsersController::class, 'update'])->name('update');
+        Route::delete('{user}', [UsersController::class, 'destroy'])->name('destroy');
+    });
+    Route::get('datatables/users', [UsersController::class, 'datatables'])->name('user.datatables');
+
+    Route::prefix('roles')->name('role.')->group(function () {
+        Route::get('', [RoleController::class, 'index'])->name('index');
+        Route::post('', [RoleController::class, 'store'])->name('store');
+        Route::get('create', [RoleController::class, 'create'])->name('create');
+        Route::get('{id}', [RoleController::class, 'show'])->name('show');
+        Route::put('{role}', [RoleController::class, 'update'])->name('update');
+        Route::delete('{role}', [RoleController::class, 'destroy'])->name('destroy');
+    });
+    Route::get('datatables/roles', [RoleController::class, 'datatables'])->name('role.datatables');
+
 });
-Route::get('datatables/categories',  [\App\Http\Controllers\admin\CategoryController::class,'datatables'])->name('category.datatables');
-
-
-Route::prefix('audios')->name('audio.')->group(function () {
-    Route::get('', [\App\Http\Controllers\admin\AudioController::class,'index'])->name('index');
-    Route::post('', [\App\Http\Controllers\admin\AudioController::class,'store'])->name('store');
-    Route::get('create', [\App\Http\Controllers\admin\AudioController::class,'create'])->name('create');
-    Route::get('{id}', [\App\Http\Controllers\admin\AudioController::class,'show'])->name('show');
-    Route::put('{audio}', [\App\Http\Controllers\admin\AudioController::class,'update'])->name('update');
-    Route::delete('{audio}', [\App\Http\Controllers\admin\AudioController::class,'destroy'])->name('destroy');
-});
-Route::get('datatables/audios',  [\App\Http\Controllers\admin\AudioController::class,'datatables'])->name('audio.datatables');
-
-Route::prefix('users')->name('users.')->group(function () {
-    Route::get('', [\App\Http\Controllers\admin\UsersController::class,'index'])->name('index');
-    Route::post('', [\App\Http\Controllers\admin\UsersController::class,'store'])->name('store');
-    Route::get('create', [\App\Http\Controllers\admin\UsersController::class,'create'])->name('create');
-    Route::get('{id}', [\App\Http\Controllers\admin\UsersController::class,'show'])->name('show');
-    Route::put('{user}', [\App\Http\Controllers\admin\UsersController::class,'update'])->name('update');
-    Route::delete('{user}', [\App\Http\Controllers\admin\UsersController::class,'destroy'])->name('destroy');
-});
-Route::get('datatables/users',  [\App\Http\Controllers\admin\UsersController::class,'datatables'])->name('users.datatables');
-
-
-Route::view('user','pages.user');
-Route::view('role','pages.role');
-
-//Route::resource('tutorial-list', TutorialsController::class)
-//    ->only(['store', 'update', 'destroy'])
-//    ->middleware(['permission:write tutorial']);
-//Route::get('datatables/tutorial-list', [TutorialsController::class, 'datatables'])->middleware(['permission:read tutorial'])->name('tutorial-list.datatables');
-//
-//Route::view('audio','pages.audio');
 
 
