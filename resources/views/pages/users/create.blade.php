@@ -40,7 +40,7 @@
         <label for="user-role">Role</label>
         <select class="form-select select2 form-control" id="user-role"
                 aria-describedby="validationServer04Feedback" name="role_id[]"
-                 tabindex="-1" aria-hidden="true">
+                 tabindex="-1" aria-hidden="true" {{isset($item) && $item->is_admin == 1 ? 'required':''}}>
             <option disabled="" value="">Choose...</option>
             @foreach($roles as $role)
                 <option @if(isset($item->roles) && $item->roles->contains('id', $role->id)) selected
@@ -59,10 +59,16 @@
 </form>
 <script>
     document.getElementById('SwitchSuccess').addEventListener('change', function (event) {
-        if (this.checked)
-            document.getElementById('role-section').style.display = 'block';
-        else
-            document.getElementById('role-section').style.display = 'none';
+        var userRole = document.getElementById('user-role');
+        var roleSection = document.getElementById('role-section');
+
+        if (this.checked) {
+            roleSection.style.display = 'block';
+            userRole.setAttribute('required', true);
+        } else {
+            roleSection.style.display = 'none';
+            userRole.removeAttribute('required');
+        }
     });
 
 

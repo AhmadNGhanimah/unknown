@@ -112,6 +112,8 @@
 
 
     <script>
+        var authUserId = {{ Auth::id() }};
+
         var table = $('#user-datatable').DataTable({
                 dom: 'Bfrtip',
                 processing: true,
@@ -146,6 +148,7 @@
                     {
                         title: 'Role',
                         data: 'roles',
+                        orderable: false,
                         render: function (data, type, row) {
                             if (data && Array.isArray(data) && data.length > 0) {
                                 return data[0].name; // Just take the name of the first role
@@ -160,25 +163,28 @@
                         className: 'text-center',
                         orderable: false,
                         render: function (data, type, row) {
-                            return `
-        <button class="btn show-btn" data-id="${data}" title="Show">
-            <i class="fa fa-eye fa-lg text-dark" aria-hidden="true"></i>
-            <span class="sr-only">Show</span>
-        </button>
+                            let buttons = `
+            <button class="btn show-btn" data-id="${data}" title="Show">
+                <i class="fa fa-eye fa-lg text-dark" aria-hidden="true"></i>
+                <span class="sr-only">Show</span>
+            </button>
+            <button class="btn edit-btn" data-id="${data}" title="Edit">
+                <i class="fa fa-edit fa-lg text-success" aria-hidden="true"></i>
+                <span class="sr-only">Edit</span>
+            </button>`;
 
+                            if (authUserId !== data) {
+                                buttons += `
+                <button class="btn delete-btn" data-id="${data}" title="Delete">
+                    <i class="fa fa-lg fa-trash text-danger" aria-hidden="true"></i>
+                    <span class="sr-only">Delete</span>
+                </button>`;
+                            }
 
-        <button class="btn edit-btn" data-id="${data}" title="Edit">
-            <i class="fa fa-edit fa-lg text-success" aria-hidden="true"></i>
-            <span class="sr-only">Edit</span>
-        </button>
-
-        <button class="btn delete-btn" data-id="${data}" title="Delete">
-            <i class="fa fa-lg fa-trash text-danger" aria-hidden="true"></i>
-            <span class="sr-only">Delete</span>
-        </button>
-    `;
+                            return buttons;
                         }
                     }
+
                 ]
             })
         ;

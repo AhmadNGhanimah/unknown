@@ -10,6 +10,6 @@ class Category extends Model
 
     public function getImageAttribute($value)
     {
-            return Storage::url('categories/'.$value);
+            return url(Storage::url('categories/'.$value));
     }
 }

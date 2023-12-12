@@ -19,7 +19,7 @@ class CategoryController extends Controller
 
     public function datatables()
     {
-        $items = Category::orderBy('id','desc');
+        $items = Category::get();
         return Datatables::of($items)
             ->addIndexColumn()
             ->editColumn('created_at', function ($q) {

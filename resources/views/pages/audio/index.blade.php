@@ -114,7 +114,7 @@
     <script>
         var table = $('#audio-datatable').DataTable({
                 dom: 'Bfrtip',
-                processing: true,
+                processing: false,
                 serverSide: true,
                 buttons: [
                     {

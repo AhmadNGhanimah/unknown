@@ -20,7 +20,7 @@ class UsersController extends Controller
 
     public function datatables()
     {
-        $items = User::orderBy('id', 'desc')->with('roles');
+        $items = User::with('roles');
         return Datatables::of($items)
             ->addIndexColumn()
             ->editColumn('created_at', function ($q) {
@@ -41,6 +41,8 @@ class UsersController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users|max:255',
             'password' => 'required|string|min:6',
+            'role_id' => 'required_if:is_admin,1'
+
         ]);
 
         if ($validator->fails()) {
@@ -59,6 +61,7 @@ class UsersController extends Controller
 
         $user->save();
 
+        if ($user->is_admin)
         $user->assignRole($request->input('role_id'));
 
 
@@ -85,7 +88,9 @@ class UsersController extends Controller
             $validator = Validator::make($request->all(), [
                 'name' => 'required|string|max:255',
                 'email' => 'required|email|unique:users,email,' . $request->id,
-                'is_admin' => 'required|in:0,1'
+                'is_admin' => 'required|in:0,1',
+                'role_id' => 'required_if:is_admin,1'
+
             ]);
 
             if ($validator->fails()) {
@@ -106,6 +111,7 @@ class UsersController extends Controller
 
             $user->save();
 
+            if ($user->is_admin)
             $user->assignRole($request->input('role_id'));
 
 

@@ -22,7 +22,6 @@ class AudioController extends Controller
     {
         $items = Audio::
         leftJoin('categories','categories.id','audios.category_id')
-        ->orderBy('id', 'desc')
         ->select('audios.*','categories.name as categoryName');
         return Datatables::of($items)
             ->addIndexColumn()

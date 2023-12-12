@@ -1,6 +1,8 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Api\AudioController;
+use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\CategoryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +16,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+
+Route::post('login',[AuthController::class,'login']);
+
+Route::get('categories',[CategoryController::class,'getCategories']);
+Route::get('audios',[AudioController::class,'getAudios']);

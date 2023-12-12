@@ -116,6 +116,7 @@
             dom: 'Bfrtip',
             processing: true,
             serverSide: true,
+            order: [[0, 'desc']],
             buttons: [
                 {
                     text: 'Reload',

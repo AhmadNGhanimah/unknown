@@ -8,9 +8,10 @@ use Illuminate\Support\Facades\Storage;
 class Audio extends Model
 {
 
-    protected $table='audios';
+    protected $table = 'audios';
+
     public function getPathAttribute($value)
     {
-        return Storage::url('audios/'.$value);
+        return url(Storage::url('audios/' . $value));
     }
 }
