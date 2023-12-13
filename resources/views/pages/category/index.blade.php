@@ -139,9 +139,10 @@
                     data: 'status',
                     render: function (data) {
                         if (data == 1)
-                            return '<span class="status-indicator projects completed">Active</span>';
+                            return '<span class="badge bg-primary my-1">Active</span>';
+
                         else
-                            return '<span class="status-indicator projects closed">InActive</span>';
+                            return '<span class="badge bg-danger my-1">InActive</span>';
                     }
                 },
                 {

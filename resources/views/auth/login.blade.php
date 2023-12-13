@@ -18,7 +18,7 @@
                 <!-- CONTAINER OPEN -->
                 <div class="col col-login mx-auto text-center">
                     <a href="{{url('/')}}" class="text-center">
-                        <img src="{{asset('assets/images/brand/logo.png')}}" class="header-brand-img" alt="">
+                        <img src="{{asset('assets/images/brand/logo-custom.jpg')}}" class="header-brand-img" style="border-radius: 50% " alt="">
                     </a>
                 </div>
                 <div class="container-login100">

@@ -75,4 +75,10 @@
 .custom-rtl{
     direction: rtl;
 }
+.avatar {
+    transition: transform 0.3s ease-in-out;
+}
 
+.avatar:hover {
+    transform: scale(1.5);
+}

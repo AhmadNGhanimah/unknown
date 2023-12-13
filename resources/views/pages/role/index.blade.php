@@ -127,9 +127,7 @@
                         dt.ajax.reload();
                     }
                 },
-                {'extend': 'excel'},
-                {'extend': 'print'},
-                {'extend': 'pdf'},
+
                 {'extend': 'pageLength'},
             ],
             ajax: {

@@ -140,9 +140,10 @@
                         data: 'is_admin',
                         render: function (data) {
                             if (data == 1)
-                                return '<span class="status-indicator projects completed"></span>';
+                                return '<span class="badge bg-primary my-1">Yes</span>';
+
                             else
-                                return '<span class="status-indicator projects closed"></span>';
+                                return '<span class="badge bg-danger my-1">No</span>';
                         }
                     },
                     {
