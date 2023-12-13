@@ -82,3 +82,26 @@
 .avatar:hover {
     transform: scale(1.5);
 }
+.custom-Action-show{
+    color: #5f5f5f;
+}
+.custom-Action-delete{
+    color: #f58181
+}
+/*Icon DashBoard*/
+.custom-background-icon-role{
+    background: #10e18269;
+}
+.custom-background-icon-user{
+    background: #2b521f63;
+}
+.custom-background-icon-audio{
+    background: #4851c763;
+}
+.custom-background-icon-categories{
+    background: #b70fa169;
+}
+.custom-background-icon-categories i , .custom-background-icon-audio i ,.custom-background-icon-user i , .custom-background-icon-role i{
+    font-size: 24px !important;
+}
+/* End Icon DashBoard*/

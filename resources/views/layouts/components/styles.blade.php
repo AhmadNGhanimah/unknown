@@ -1,6 +1,6 @@
 
 		<!-- TITLE -->
-		<title>Project Unknown</title>
+        <title>@yield('title', '')</title>
 
         <!-- FAVICON -->
         <link rel="shortcut icon" type="image/x-icon" href="{{asset('assets/images/brand/fav-icon.png')}}" />

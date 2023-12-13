@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('title', 'Role')
 @section('styles')
 @endsection
 
@@ -134,9 +134,9 @@
                 url: "{{route('role.datatables')}}"
             },
             columns: [
-                {title: 'ID', data: 'id'},
-                {title: 'Name', data: 'name'},
-                {data: 'created_at', title: 'Created At'},
+                {title: 'ID', data: 'id',className: 'text-center'},
+                {title: 'Name', data: 'name' ,className: 'text-center'},
+                {data: 'created_at', title: 'Created At',className: 'text-center'},
                 {
                     data: 'id',
                     title: 'Actions',
@@ -150,7 +150,7 @@
         </button>
 
         <button class="btn delete-btn" data-id="${data}" title="Delete">
-            <i class="fa fa-lg fa-trash text-danger" aria-hidden="true"></i>
+            <i class="fa fa-lg fa-trash custom-Action-delete" aria-hidden="true"></i>
             <span class="sr-only">Delete</span>
         </button>
     `;

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('title', 'DashBoard')
 @section('styles')
 
 @endsection
@@ -38,9 +38,8 @@
                                 </p>
                             </div>
                             <div class="col col-auto top-icn dash">
-                                <div class="counter-icon bg-primary dash ms-auto box-shadow-primary">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#495584" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
-                                </div>
+                                <div class="counter-icon custom-background-icon-categories ms-auto box-shadow-primary">
+                                    <i class="fe fe-layers" data-bs-toggle="tooltip" title="" data-bs-original-title="fe fe-layers" aria-label="fe fe-layers"></i>                                </div>
                             </div>
                         </div>
                     </div>
@@ -61,9 +60,8 @@
                                 </p>
                             </div>
                             <div class="col col-auto top-icn dash">
-                                <div class="counter-icon bg-secondary dash ms-auto box-shadow-secondary">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#495584" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
-                                </div>
+                                <div class="counter-icon custom-background-icon-audio  ms-auto box-shadow-secondary">
+                                    <i class="fe fe-speaker" data-bs-toggle="tooltip" title="" data-bs-original-title="fe fe-speaker" aria-label="fe fe-speaker"></i>                                </div>
                             </div>
                         </div>
                     </div>
@@ -84,9 +82,8 @@
                                 </p>
                             </div>
                             <div class="col col-auto top-icn dash">
-                                <div class="counter-icon bg-info dash ms-auto box-shadow-info">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#495584" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-                                </div>
+                                <div class="counter-icon custom-background-icon-user  ms-auto box-shadow-info">
+                                    <i class="fe fe-user" data-bs-toggle="tooltip" title="" data-bs-original-title="fe fe-user" aria-label="fe fe-user"></i>                                </div>
                             </div>
                         </div>
                     </div>
@@ -107,9 +104,8 @@
                                 </p>
                             </div>
                             <div class="col col-auto top-icn dash">
-                                <div class="counter-icon bg-warning dash ms-auto box-shadow-warning">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#495584" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
-                                </div>
+                                <div class="counter-icon custom-background-icon-role ms-auto box-shadow-warning">
+                                    <i class="fe fe-check-circle  " data-bs-toggle="tooltip" title="" data-bs-original-title="fe fe-check-circle" aria-label="fe fe-check-circle"></i>                                </div>
                             </div>
                         </div>
                     </div>

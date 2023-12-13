@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', 'Category')
 
 @section('styles')
 
@@ -131,22 +132,23 @@
                 url: "{{route('category.datatables')}}"
             },
             columns: [
-                {title: 'ID', data: 'id'},
-                {title: 'Name', data: 'name'},
-                {title: 'Name AR', data: 'name_ar'},
+                {title: 'ID', data: 'id',className: 'text-center'},
+                {title: 'Name', data: 'name',className: 'text-center'},
+                {title: 'Name AR', data: 'name_ar',className: 'text-center'},
                 {
                     title: 'Status',
+                    className: 'text-center',
                     data: 'status',
                     render: function (data) {
                         if (data == 1)
-                            return '<span class="badge bg-primary my-1">Active</span>';
-
+                            return '<span class="badge font-weight-semibold bg-success-transparent text-success tx-11">Active</span>';
                         else
-                            return '<span class="badge bg-danger my-1">InActive</span>';
+                            return '<span class="badge font-weight-semibold bg-secondary-transparent text-secondary tx-11">InActive</span>';
                     }
                 },
                 {
                     title: 'Image',
+                    className: 'text-center',
                     data: 'image',
                     render: function (data) {
                         if (data) {
@@ -156,7 +158,7 @@
                         }
                     }
                 },
-                {title: 'Created At', data: 'created_at'},
+                {title: 'Created At', data: 'created_at',className: 'text-center',},
                 {
                     data: 'id',
                     title: 'Actions',
@@ -165,7 +167,7 @@
                     render: function (data, type, row) {
                         return `
         <button class="btn show-btn" data-id="${data}" title="Show">
-            <i class="fa fa-eye fa-lg text-dark" aria-hidden="true"></i>
+            <i class="fa fa-eye fa-lg custom-Action-show" aria-hidden="true"></i>
             <span class="sr-only">Show</span>
         </button>
 
@@ -176,7 +178,7 @@
         </button>
 
         <button class="btn delete-btn" data-id="${data}" title="Delete">
-            <i class="fa fa-lg fa-trash text-danger" aria-hidden="true"></i>
+            <i class="fa fa-lg fa-trash custom-Action-delete" aria-hidden="true"></i>
             <span class="sr-only">Delete</span>
         </button>
     `;

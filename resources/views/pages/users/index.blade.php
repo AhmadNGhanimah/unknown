@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('title', 'User')
 @section('styles')
 
 @endsection
@@ -132,9 +132,9 @@
                     url: "{{route('user.datatables')}}"
                 },
                 columns: [
-                    {title: 'ID', data: 'id'},
-                    {title: 'Name', data: 'name'},
-                    {title: 'email', data: 'email'},
+                    {title: 'ID', data: 'id',className: 'text-center'},
+                    {title: 'Name', data: 'name',className: 'text-center'},
+                    {title: 'email', data: 'email',className: 'text-center'},
                     {
                         title: 'Admin',
                         data: 'is_admin',
@@ -149,6 +149,7 @@
                     {
                         title: 'Role',
                         data: 'roles',
+                        className:'text-center',
                         orderable: false,
                         render: function (data, type, row) {
                             if (data && Array.isArray(data) && data.length > 0) {
@@ -157,7 +158,7 @@
                             return '';
                         }
                     },
-                    {title: 'Created At', data: 'created_at'},
+                    {title: 'Created At', data: 'created_at',className: 'text-center'},
                     {
                         data: 'id',
                         title: 'Actions',
@@ -166,7 +167,7 @@
                         render: function (data, type, row) {
                             let buttons = `
             <button class="btn show-btn" data-id="${data}" title="Show">
-                <i class="fa fa-eye fa-lg text-dark" style="color: #5f5f5f !important;" aria-hidden="true"></i>
+                <i class="fa fa-eye fa-lg custom-Action-show" aria-hidden="true"></i>
                 <span class="sr-only">Show</span>
             </button>
             <button class="btn edit-btn" data-id="${data}" title="Edit">
@@ -177,7 +178,7 @@
                             if (authUserId !== data) {
                                 buttons += `
                 <button class="btn delete-btn" data-id="${data}" title="Delete">
-                    <i class="fa fa-lg fa-trash text-danger" style="color: #f58181 !important;" aria-hidden="true"></i>
+                    <i class="fa fa-lg fa-trash custom-Action-delete"  aria-hidden="true"></i>
                     <span class="sr-only">Delete</span>
                 </button>`;
                             }
