@@ -138,12 +138,12 @@
                     {
                         title: 'Admin',
                         data: 'is_admin',
+                        className:'text-center',
                         render: function (data) {
                             if (data == 1)
-                                return '<span class="badge bg-primary my-1">Yes</span>';
-
+                                return '<span class="badge font-weight-semibold bg-success-transparent text-success tx-11">Yes</span>';
                             else
-                                return '<span class="badge bg-danger my-1">No</span>';
+                                return '<span class="badge font-weight-semibold bg-secondary-transparent text-secondary tx-11">No</span>';
                         }
                     },
                     {
@@ -166,7 +166,7 @@
                         render: function (data, type, row) {
                             let buttons = `
             <button class="btn show-btn" data-id="${data}" title="Show">
-                <i class="fa fa-eye fa-lg text-dark" aria-hidden="true"></i>
+                <i class="fa fa-eye fa-lg text-dark" style="color: #5f5f5f !important;" aria-hidden="true"></i>
                 <span class="sr-only">Show</span>
             </button>
             <button class="btn edit-btn" data-id="${data}" title="Edit">
@@ -177,7 +177,7 @@
                             if (authUserId !== data) {
                                 buttons += `
                 <button class="btn delete-btn" data-id="${data}" title="Delete">
-                    <i class="fa fa-lg fa-trash text-danger" aria-hidden="true"></i>
+                    <i class="fa fa-lg fa-trash text-danger" style="color: #f58181 !important;" aria-hidden="true"></i>
                     <span class="sr-only">Delete</span>
                 </button>`;
                             }

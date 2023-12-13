@@ -382,7 +382,7 @@
 										<div class="dropdown d-md-flex profile-1">
 											<a href="#" data-bs-toggle="dropdown" class="nav-link pe-2 leading-none d-flex animate">
 												<span>
-													<img src="{{asset('assets/images/faces/User.png')}}" alt="profile-user"
+													<img src="{{asset('assets/images/user-default.png')}}" alt="profile-user"
 														class="avatar profile-user brround cover-image">
 												</span>
 												<div class="text-center p-1 d-flex d-lg-none-max">

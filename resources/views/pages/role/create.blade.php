@@ -25,7 +25,7 @@
                     <div class="material-switch">
                         <input id="permission-{{$permission->id}}" name="permissions[]" value="{{$permission->name}}" type="checkbox"
                                @if(isset($item->id) && $item->permissions->contains('id', $permission->id)) checked @endif>
-                        <label for="permission-{{$permission->id}}" class="label-primary"></label>
+                        <label for="permission-{{$permission->id}}" class="label-primary" style="background-color: #00cfa8 !important;"></label>
                     </div>
                 </div>
             </div>
